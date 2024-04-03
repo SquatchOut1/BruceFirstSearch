@@ -19,8 +19,8 @@
 (define bfs fwgc)
 
 (define Jugs
-  (lambda (L)
-     (fwgc (append '(0 0) (reverse (cdr (reverse L)))) (cddr L))))
+  (lambda (A B C)
+     (fwgc (append '(0 0) (list A) (list B)) (list C))))
 
 ;; check membership in a list, including sub-list of arbitary levels
 ;; (in 4 '(5 ((4 6)))
