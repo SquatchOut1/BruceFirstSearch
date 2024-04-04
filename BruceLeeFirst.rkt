@@ -57,6 +57,8 @@
        (else (AtoB (append (list (- (car L) 1)) (list(+ (cadr L) 1)) (cddr L))))
        )))
 
+
+
 (define BtoA
   (lambda (L)
      (cond
@@ -88,4 +90,37 @@
 )
 
 
-        
+(define printjugs
+  (lambda (L)
+     (printjugsR L 0)))
+
+
+(define printjugsR
+  (lambda (L a)
+     (cond
+       ((eq? (length L) 1) (display "Steps Taken: ") a)
+       ((eq? (caar L)(caadr L)) (printBChange L (+ a 1)))
+       ((eq? (cadar L)(cadadr L)) (printAChange L (+ a 1)))
+       (else (ABChange L (+ a 1)))
+       )))
+(define printBChange
+  (lambda (L a)
+     (cond
+       ((eq? (cadadr L) 0) (display "Empty-B\n") (printjugsR (cdr L) a))
+       (else (display "Fill-B\n") (printjugsR (cdr L) a))
+       )))
+(define printAChange
+  (lambda (L a)
+     (cond
+       ((eq? (caadr L) 0) (display "Empty-A\n") (printjugsR (cdr L) a))
+       (else (display "Fill-A\n") (printjugsR (cdr L) a))
+       )))
+(define ABChange
+  (lambda (L a)
+     (cond
+       ((eq? (+ (caar L) 1) (caadr L)) (display "B-to-A\n") (printjugsR (cdr L) a))
+       (else (display "A-to-B\n") (printjugsR (cdr L) a))
+       )))
+
+
+
